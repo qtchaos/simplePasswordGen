@@ -1,3 +1,5 @@
+package com.chaos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -44,7 +46,7 @@ public class GUI implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Adds a custom icon to the window.
-        URL iconURL = getClass().getResource("icon.png");
+        URL iconURL = getClass().getResource("/icon.png");
         assert iconURL != null;
         ImageIcon icon = new ImageIcon(iconURL);
         frame.setIconImage(icon.getImage());
