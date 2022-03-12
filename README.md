@@ -1,4 +1,4 @@
-# Just a simple password generator
+# Just a simple password generator.
 
 ### Instructions
 1. Download the [.jar file](https://github.com/qtchaos/simplePasswordGen/releases/tag/v1.0.0).
