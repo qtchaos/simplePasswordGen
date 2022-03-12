@@ -5,7 +5,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-import java.util.Random;
 
 public class GUI implements ActionListener {
 
@@ -25,7 +24,7 @@ public class GUI implements ActionListener {
         // Listens to the JTextField and waits for user to press enter.
         input.addActionListener(e -> {
             try {
-                String generatedPassword = null;
+                String generatedPassword;
                 String inputText = input.getText();
                 int string2int = Integer.parseInt(inputText);
                 generatedPassword = getAlphaNumericString(string2int);
