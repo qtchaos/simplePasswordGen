@@ -10,18 +10,32 @@ import java.net.URL;
 
 public class GUI implements ActionListener {
 
-    JTextField input = new JTextField();
-
     GUI() {
 
-        JFrame frame = new JFrame("Password Generator");
+
+        JFrame frame = new JFrame("Pass Gen");
+        JTextField input = new JTextField();
         input.setBounds(25, 40, 30, 25);
         frame.add(input);
-
+        
         JLabel text = new JLabel("Insert max password length.");
         text.setBounds(25, 10, 400, 25);
         text.setFont(new Font("", Font.PLAIN, 15));
         frame.add(text);
+
+        // Listens to the JTextField and waits for user to press enter.
+        input.addActionListener(e -> {
+            try {
+                String generatedPassword;
+                String inputText = input.getText();
+                int string2int = Integer.parseInt(inputText);
+                generatedPassword = getAlphaNumericString(string2int);
+                System.out.println(generatedPassword);
+                clipboardCopy(generatedPassword);
+            } catch (NumberFormatException error) {
+                System.out.println("Invalid character!");
+            }
+        });
 
         // Frame options
         frame.setSize(250, 125);
@@ -39,12 +53,12 @@ public class GUI implements ActionListener {
 
     }
 
+
     // This function generates the random string.
     static String getAlphaNumericString(int n) {
 
         // chose a Character random from this String
-        String AlphaNumericString =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
 
@@ -68,16 +82,7 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            String generatedPassword;
-            String inputText = input.getText();
-            int string2int = Integer.parseInt(inputText);
-            generatedPassword = getAlphaNumericString(string2int);
-            System.out.println(generatedPassword);
-            clipboardCopy(generatedPassword);
-        } catch (NumberFormatException error) {
-            throw new NumberFormatException();
-        }
+        // See ln 27.
     }
 
     // Function for copying String values to the clipboard.
@@ -88,10 +93,6 @@ public class GUI implements ActionListener {
     }
 
     public static void main(String[] args) {
-        try {
-            new GUI();
-        } catch (NullPointerException e) {
-            System.out.println("Invalid character!");
-        }
+        new GUI();
     }
 }
