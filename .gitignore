@@ -1,6 +1,9 @@
 # Project exclude paths
 /out/
 
+# IntelliJ
+.idea
+
 # Compiled class file
 *.class
 
