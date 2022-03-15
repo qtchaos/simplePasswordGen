@@ -9,11 +9,9 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 
 public class GUI implements ActionListener {
-
+        JFrame frame = new JFrame("Pass Gen");
     GUI() {
 
-
-        JFrame frame = new JFrame("Pass Gen");
         JTextField input = new JTextField();
         input.setBounds(25, 40, 30, 25);
         frame.add(input);
@@ -29,11 +27,17 @@ public class GUI implements ActionListener {
                 String generatedPassword;
                 String inputText = input.getText();
                 int string2int = Integer.parseInt(inputText);
+
+                // Uses the getAlphaNumericString function to generate a randomized string from the provided int.
                 generatedPassword = getAlphaNumericString(string2int);
                 System.out.println(generatedPassword);
                 clipboardCopy(generatedPassword);
-            } catch (NumberFormatException error) {
-                System.out.println("Invalid character!");
+                // Set  background color to GREEN to show success.
+                frame.getContentPane().setBackground(Color.GREEN);
+            } catch (NumberFormatException err) {
+                // Set  background color to RED to show failure.
+                frame.getContentPane().setBackground(Color.RED);
+                err.printStackTrace();
             }
         });
 
@@ -42,38 +46,37 @@ public class GUI implements ActionListener {
         frame.setResizable(false);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
 
         // Adds a custom icon to the window.
         URL iconURL = getClass().getResource("/icon.png");
         assert iconURL != null;
         ImageIcon icon = new ImageIcon(iconURL);
         frame.setIconImage(icon.getImage());
-
     }
-
 
     // This function generates the random string.
     static String getAlphaNumericString(int n) {
 
-        // chose a Character random from this String
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        // Random characters for use later on.
+        String AlphaNumericString =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
 
-        // create StringBuffer size of AlphaNumericString
+        // Create StringBuffer size of AlphaNumericString
         StringBuilder sb = new StringBuilder(n);
 
         for (int i = 0; i < n; i++) {
 
-            // generate a random number between
+            // Generate a random number between
             // 0 to AlphaNumericString variable length
             int index
                     = (int) (AlphaNumericString.length()
                     * Math.random());
 
-            // add Character one by one in end of sb
+            // Add Character one by one in end of sb
             sb.append(AlphaNumericString
                     .charAt(index));
         }
